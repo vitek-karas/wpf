@@ -1,5 +1,32 @@
 <Project>
-  <ItemGroup Condition=" '$(EnableDefaultItems)' == 'true' And '$(UseWPF)' == 'true'">
+  <PropertyGroup>
+    <!-- 
+      Microsoft.NET.Sdk will use this property to test whether $(UseWpf) or $(UseWindowsForms) are 
+      used without importing Microsoft.NET.Sdk.WindowsDesktop, and show a warning. 
+    -->
+    <_MicrosoftNetSdkWindowsDesktop>true</_MicrosoftNetSdkWindowsDesktop>
+  </PropertyGroup>
+
+  <!-- 
+    Determine whether WPF and Windows Forms can really be used. 
+      WPF & Windows Forms are supported on .NET Core 3.0+, and on .NET Framework 3.0+
+  --> 
+  <PropertyGroup Condition="'$(_TargetFrameworkVersionWithoutV)' != '' And '$(_TargetFrameworkVersionWithoutV)' >= '3.0' And '$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+    <_UseWpfOnNetCore Condition="'$(UseWPF)'=='true'">true</_UseWpfOnNetCore>
+    <_UseWindowsFormsOnNetCore Condition="'$(UseWindowsForms)'=='true'">true</_UseWindowsFormsOnNetCore>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(_TargetFrameworkVersionWithoutV)' != '' And '$(_TargetFrameworkVersionWithoutV)' >= '3.0' And '$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <_UseWpfOnNetFx Condition="'$(UseWPF)'=='true'">true</_UseWpfOnNetFx>
+    <_UseWindowsFormsOnNetFx Condition="'$(UseWindowsForms)'=='true'">true</_UseWindowsFormsOnNetFx>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_UseWpf Condition="'$(_UseWpfOnNetCore)' == 'true' And '$(_UseWpfOnNetFx)' == 'true'">true</_UseWpf>
+    <_UseWindowsForms Condition="'$(_UseWindowsFormsOnNetCore)' == 'true' And '$(_UseWindowsFormsOnNetFx)' == 'true'">true</_UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(EnableDefaultItems)' == 'true' And '$(_UseWpf)' == 'true'">
     <ApplicationDefinition Include="App.xaml"
                            Condition="'$(EnableDefaultApplicationDefinition)' != 'false' And Exists('$(MSBuildProjectDirectory)/App.xaml') And '$(MSBuildProjectExtension)' == '.csproj'">
       <Generator>MSBuild:Compile</Generator>
@@ -22,15 +49,15 @@
           Condition="'$(EnableDefaultPageItems)' != 'false'" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(TargetFrameworkIdentifier)' == '.NETCoreApp' And '$(UseWPF)' == 'true' And '$(UseWindowsForms)' == 'true'">
+  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(_UseWpfOnNetCore)' == 'true' And '$(_UseWindowsFormsOnNetCore)' == 'true'">
     <FrameworkReference Include="Microsoft.WindowsDesktop.App" IsImplicitlyDefined="true" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(TargetFrameworkIdentifier)' == '.NETCoreApp' And '$(UseWPF)' == 'true' And '$(UseWindowsForms)' != 'true'">
+  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(_UseWpfOnNetCore)' == 'true' And '$(_UseWindowsFormsOnNetCore)' != 'true'">
     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" IsImplicitlyDefined="true" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(TargetFrameworkIdentifier)' == '.NETCoreApp' And '$(UseWPF)' != 'true' And '$(UseWindowsForms)' == 'true'">
+  <ItemGroup Condition="'$(DisableImplicitFrameworkReferences)' != 'true' And '$(_UseWpfOnNetCore)' != 'true' And '$(_UseWindowsFormsOnNetCore)' == 'true'">
     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" IsImplicitlyDefined="true" />
   </ItemGroup>
 
@@ -59,7 +86,7 @@
       the private $(_TargetFrameworkVersionWithoutV) property - which will likely remain supported and
       is safe to use here. 
   -->
-  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework' And '$(_TargetFrameworkVersionWithoutV)' != ''">
+  <ItemGroup Condition="'$(_UseWpfOnNetFx)' == 'true' And '$(_TargetFrameworkVersionWithoutV)' != ''">
     <_WpfCommonNetFxReference Include="WindowsBase" Condition="'$(_TargetFrameworkVersionWithoutV)' >= '3.0'" />
     <_WpfCommonNetFxReference Include="PresentationCore" Condition="'$(_TargetFrameworkVersionWithoutV)' >= '3.0'" />
     <_WpfCommonNetFxReference Include="PresentationFramework" Condition="'$(_TargetFrameworkVersionWithoutV)' >= '3.0'" />
@@ -75,15 +102,21 @@
     <_WpfCommonNetFxReference Include="System.Windows.Controls.Ribbon" Condition="'$(_TargetFrameworkVersionWithoutV)' >= '4.5'" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(TargetFrameworkIdentifier)' == '.NETFramework' And '$(UseWPF)' == 'true' ">
+  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(_UseWpfOnNetFx)' == 'true' ">
     <_SDKImplicitReference Include="@(_WpfCommonNetFxReference)" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(TargetFrameworkIdentifier)' == '.NETFramework' And '$(UseWindowsForms)' == 'true' ">
+  <!-- 
+    System.Windows.Forms is applicable for .NET 3.x, .NET 4.0, and .NET 4.5+
+  -->
+  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(_UseWindowsFormsOnNetFx)' == 'true' ">
     <_SDKImplicitReference Include="System.Windows.Forms"/>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(TargetFrameworkIdentifier)' == '.NETFramework' And '$(UseWindowsForms)' == 'true' And '$(UseWPF)' == 'true' ">
+  <!-- 
+    WindowsFormsIntegration is applicable for .NET 3.x, .NET 4.0, and .NET 4.5+
+  -->
+  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' and '$(_UseWindowsFormsOnNetFx)' == 'true' And '$(_UseWpfOnNetFx)' == 'true' ">
     <_SDKImplicitReference Include="WindowsFormsIntegration"/>
   </ItemGroup>
 </Project>

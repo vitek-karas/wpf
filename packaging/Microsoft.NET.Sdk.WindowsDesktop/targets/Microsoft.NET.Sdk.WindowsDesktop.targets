@@ -1,33 +1,34 @@
 <Project>
+  <Import Project="Microsoft.WinFX.targets"
+          Condition="'$(_UseWpf)' == 'true'" />
 
-   <!-- 
-    For now, UseLegacyPresentationBuildTasks=true can be used to use the in-box framework 
-    PresentationBuildTasks and targets when running in full framework MSBuild. This is
-    just an escape hatch while the new PresentationBuildTasks bake. 
-    
-    When we remove this,we can remove the correpsonding corresponding mscorlib swap targets in
-    Microsoft.DesktopUI.App.targets, and the production of ref-mscorlib shims 
-  -->
- <Import Project="$(MSBuildToolsPath)\Microsoft.WinFX.targets" 
-         Condition ="'$(MSBuildRuntimeType)' != 'Core' and '$(UseLegacyPresentationBuildTasks)' == 'true'"/>
+  <ItemGroup Condition=" '$(EnableDefaultItems)' == 'true' And '$(_UseWpf)' == 'true'">
 
- <Import Project="Microsoft.WinFX.targets" 
-         Condition="'$(MSBuildRuntimeType)' == 'Core' or '$(UseLegacyPresentationBuildTasks)' != 'true'" />
-
-  <ItemGroup Condition=" '$(EnableDefaultItems)' == 'true' And '$(UseWPF)' == 'true'">
-    
     <!-- In the WindowsDesktop .props, we globbed all .xaml files as Page items.  If any of those files are included
          as Resource, Content, or None items, then remove them from the Page items. -->
     <Page Remove="@(Resource);@(Content);@(None)"
           Condition="'$(EnableDefaultPageItems)' != 'false'" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <CheckForInvalidWindowsDesktopSdkConfigurationDependsOn>
+      $(CheckForInvalidWindowsDesktopSdkConfigurationDependsOn);
+      CheckForDuplicatePageItems;
+      EnsureUseWpfOrUseWindowsForms;
+      EnsureTargetFrameworkVersion30
+    </CheckForInvalidWindowsDesktopSdkConfigurationDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CheckForInvalidWindowsDesktopSdkConfiguration"
+          BeforeTargets="_CheckForInvalidConfigurationAndPlatform"
+          DependsOnTargets="$(CheckForInvalidWindowsDesktopSdkConfigurationDependsOn)" />
+
   <!-- Generate error if there are duplicate page items.  The task comes from the .NET SDK, and this target follows
        the pattern in the CheckForDuplicateItems task, where the .NET SDK checks for duplicate items for the item
        types it knows about. -->
-  <Target Name="CheckForDuplicatePageItems" BeforeTargets="_CheckForInvalidConfigurationAndPlatform;CoreCompile"
+  <Target Name="CheckForDuplicatePageItems" BeforeTargets="CoreCompile"
           DependsOnTargets="CheckForDuplicateItems"
-          Condition="'$(UseWPF)' == 'true'">
+          Condition="'$(_UseWpf)' == 'true'">
 
     <CheckForDuplicateItems
       Items="@(Page)"
@@ -44,7 +45,16 @@
       <Page Remove="@(Page)" />
       <Page Include="@(DeduplicatedPageItems)" />
     </ItemGroup>
+  </Target>
 
+  <Target Name="EnsureUseWpfOrUseWindowsForms"
+          Condition="'$(UseWpf)' != 'true' And '$(UseWindowsForms)' != 'true'">
+    <NetSdkWarning ResourceName="WindowsDesktopFrameworkRequiresUseWpfOrUseWindowsForms" />
+  </Target>
+
+  <Target Name="EnsureTargetFrameworkVersion30"
+          Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+    <NetSdkWarning ResourceName="WindowsDesktopFrameworkRequiresVersion30" Condition="'$(_TargetFrameworkVersionWithoutV)' &lt; '3.0'"/>
   </Target>
 
 </Project>

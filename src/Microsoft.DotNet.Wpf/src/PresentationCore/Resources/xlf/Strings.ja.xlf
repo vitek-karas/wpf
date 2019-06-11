@@ -1007,11 +1007,6 @@
         <target state="translated">Target プロパティが設定されていないため、FamilyMap を追加できません。</target>
         <note />
       </trans-unit>
-      <trans-unit id="FavoritesKey">
-        <source>Ctrl+I</source>
-        <target state="translated">Ctrl+I</target>
-        <note />
-      </trans-unit>
       <trans-unit id="FavoritesKeyDisplayString">
         <source>Ctrl+I</source>
         <target state="translated">Ctrl+I</target>
@@ -2317,11 +2312,6 @@
         <target state="translated">フォーカスを上へ移動</target>
         <note />
       </trans-unit>
-      <trans-unit id="MoveLeftKey">
-        <source>Left</source>
-        <target state="translated">Left</target>
-        <note />
-      </trans-unit>
       <trans-unit id="MoveLeftKeyDisplayString">
         <source>Left</source>
         <target state="translated">Left</target>
@@ -2770,11 +2760,6 @@
       <trans-unit id="ReentrantVisualTreeChangeWarning">
         <source>WARNING. The visual tree has been changed during a '{0}' event.  This is not supported in a production application.  Be sure to correct this before shipping the application.</source>
         <target state="translated">警告。'{0}' イベント中にビジュアル ツリーが変更されました。これは、実稼働アプリケーションではサポートされていません。アプリケーションの出荷前に、これを修正してください。</target>
-        <note />
-      </trans-unit>
-      <trans-unit id="RefreshKey">
-        <source>F5</source>
-        <target state="translated">F5</target>
         <note />
       </trans-unit>
       <trans-unit id="RefreshKeyDisplayString">

@@ -262,19 +262,19 @@ namespace System.Windows.Input
                     break;
                 case  CommandId.Refresh:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.RefreshKey),
+                        RefreshKey,
                         SR.Get(SRID.RefreshKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.Favorites:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.FavoritesKey),
+                        FavoritesKey,
                         SR.Get(SRID.FavoritesKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.Search:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.SearchKey),
+                        SearchKey,
                         SR.Get(SRID.SearchKeyDisplayString),
                         gestures);
                     break;
@@ -391,9 +391,12 @@ namespace System.Windows.Input
         private static RoutedUICommand[] _internalCommands = new RoutedUICommand[(int)CommandId.Last];
         #endregion Private Fields
 
-        internal const string BrowseBackKey = "Alt+Left;Backspace";
-        internal const string BrowseForwardKey = "Alt+Right;Shift+Backspace";
-        internal const string BrowseHomeKey = "Alt+Home;BrowserHome";
-        internal const string BrowseStopKey = "Alt+Esc;BrowserStop";
+        private const string BrowseBackKey = "Alt+Left;Backspace";
+        private const string BrowseForwardKey = "Alt+Right;Shift+Backspace";
+        private const string BrowseHomeKey = "Alt+Home;BrowserHome";
+        private const string BrowseStopKey = "Alt+Esc;BrowserStop";
+        private const string FavoritesKey = "Ctrl+I";
+        private const string RefreshKey = "F5";
+        private const string SearchKey = "F3";
     }
 }

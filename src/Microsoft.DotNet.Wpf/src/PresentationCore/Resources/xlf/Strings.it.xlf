@@ -1007,11 +1007,6 @@
         <target state="translated">Impossibile aggiungere FamilyMap perché la proprietà Target non è impostata.</target>
         <note />
       </trans-unit>
-      <trans-unit id="FavoritesKey">
-        <source>Ctrl+I</source>
-        <target state="translated">CTRL+I</target>
-        <note />
-      </trans-unit>
       <trans-unit id="FavoritesKeyDisplayString">
         <source>Ctrl+I</source>
         <target state="translated">CTRL+I</target>
@@ -2317,11 +2312,6 @@
         <target state="translated">Sposta stato attivo in alto</target>
         <note />
       </trans-unit>
-      <trans-unit id="MoveLeftKey">
-        <source>Left</source>
-        <target state="translated">Freccia SINISTRA</target>
-        <note />
-      </trans-unit>
       <trans-unit id="MoveLeftKeyDisplayString">
         <source>Left</source>
         <target state="translated">Freccia SINISTRA</target>
@@ -2770,11 +2760,6 @@
       <trans-unit id="ReentrantVisualTreeChangeWarning">
         <source>WARNING. The visual tree has been changed during a '{0}' event.  This is not supported in a production application.  Be sure to correct this before shipping the application.</source>
         <target state="translated">AVVISO: l'albero visuale è stato modificato durante un evento '{0}'. Questo comportamento non è supportato in un'applicazione di produzione. Assicurarsi di correggere l'errore prima di distribuire l'applicazione.</target>
-        <note />
-      </trans-unit>
-      <trans-unit id="RefreshKey">
-        <source>F5</source>
-        <target state="translated">F5</target>
         <note />
       </trans-unit>
       <trans-unit id="RefreshKeyDisplayString">

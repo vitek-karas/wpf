@@ -10,26 +10,26 @@ using System;
 
 namespace MS.Internal
 {
-    internal static class SystemCoreHelper
+    internal static class SystemLinqExpressionsHelper
     {
         // return true if the item implements IDynamicMetaObjectProvider
         internal static bool IsIDynamicMetaObjectProvider(object item)
         {
-            SystemCoreExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemCore();
+            SystemLinqExpressionsExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemLinqExpressions();
             return (extensions != null) ? extensions.IsIDynamicMetaObjectProvider(item) : false;
         }
 
         // return a new DynamicPropertyAccessor
         internal static object NewDynamicPropertyAccessor(Type ownerType, string propertyName)
         {
-            SystemCoreExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemCore();
+            SystemLinqExpressionsExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemLinqExpressions();
             return (extensions != null) ? extensions.NewDynamicPropertyAccessor(ownerType, propertyName) : null;
         }
 
         // return a DynamicIndexerAccessor with the given number of arguments
         internal static object GetIndexerAccessor(int rank)
         {
-            SystemCoreExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemCore();
+            SystemLinqExpressionsExtensionMethods extensions = AssemblyHelper.ExtensionsForSystemLinqExpressions();
             return (extensions != null) ? extensions.GetIndexerAccessor(rank) : null;
         }
     }

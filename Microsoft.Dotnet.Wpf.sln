@@ -95,7 +95,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BamlTestClasses40", "src\Mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BamlAvoidXmlTest", "src\Microsoft.DotNet.Wpf\test\DRT\DrtXaml\BamlAvoidXmlTest\BamlAvoidXmlTest.csproj", "{9163F98E-E941-45F5-9A57-47F375F50333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationFramework-SystemCore", "src\Microsoft.DotNet.Wpf\src\Extensions\PresentationFramework-SystemCore\PresentationFramework-SystemCore.csproj", "{64366C3F-3542-4CC1-85A8-CC6B8C9B8C84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationFramework-SystemLinqExpressions", "src\Microsoft.DotNet.Wpf\src\Extensions\PresentationFramework-SystemLinqExpressions\PresentationFramework-SystemLinqExpressions.csproj", "{64366C3F-3542-4CC1-85A8-CC6B8C9B8C84}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationFramework-SystemData", "src\Microsoft.DotNet.Wpf\src\Extensions\PresentationFramework-SystemData\PresentationFramework-SystemData.csproj", "{38B84251-D518-4E47-A18F-5B061619983C}"
 EndProject

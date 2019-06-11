@@ -4,10 +4,9 @@
     <Platforms>AnyCPU;x64</Platforms>
     <EnableDefaultItems>false</EnableDefaultItems>
     <GenerateDependencyFile>false</GenerateDependencyFile>
-    <ProduceReferenceAssembly>false</ProduceReferenceAssembly> 
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SystemCoreExtension.cs" />
+    <Compile Include="SystemLinqExpressionsExtension.cs" />
     <Compile Include="DynamicAccessorImpl.cs" />
   </ItemGroup>
   <ItemGroup>

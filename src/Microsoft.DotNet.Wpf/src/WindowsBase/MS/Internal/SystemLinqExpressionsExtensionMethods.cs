@@ -13,7 +13,7 @@ using MS.Win32;
 
 namespace MS.Internal
 {
-    internal abstract class SystemCoreExtensionMethods
+    internal abstract class SystemLinqExpressionsExtensionMethods
     {
         // return true if the item implements IDynamicMetaObjectProvider
         internal abstract bool IsIDynamicMetaObjectProvider(object item);

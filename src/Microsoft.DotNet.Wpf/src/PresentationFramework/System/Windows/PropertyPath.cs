@@ -638,9 +638,9 @@ namespace System.Windows
 
                 // 6. IDynamicMetaObjectProvider
                 // This supports the DLR's dynamic objects
-                if (accessor == null && SystemCoreHelper.IsIDynamicMetaObjectProvider(item))
+                if (accessor == null && SystemLinqExpressionsHelper.IsIDynamicMetaObjectProvider(item))
                 {
-                    accessor = SystemCoreHelper.NewDynamicPropertyAccessor(item.GetType(), propertyName);
+                    accessor = SystemLinqExpressionsHelper.NewDynamicPropertyAccessor(item.GetType(), propertyName);
                 }
 
                 if (accessor == null && throwOnError)

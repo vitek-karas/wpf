@@ -12,7 +12,7 @@ namespace MS.Internal
 {
     //FxCop can't tell that this class is instantiated via reflection, so suppress the FxCop warning.
     [SuppressMessage("Microsoft.Performance","CA1812:AvoidUninstantiatedInternalClasses")]
-    internal class SystemCoreExtension : SystemCoreExtensionMethods
+    internal class SystemLinqExpressionsExtension : SystemLinqExpressionsExtensionMethods
     {
         // return true if the item implements IDynamicMetaObjectProvider
         internal override bool IsIDynamicMetaObjectProvider(object item)

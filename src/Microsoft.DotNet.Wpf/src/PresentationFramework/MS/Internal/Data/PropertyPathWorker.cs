@@ -1213,11 +1213,11 @@ namespace MS.Internal.Data
                         }
                     }
 
-                    if (info == null && SystemCoreHelper.IsIDynamicMetaObjectProvider(item))
+                    if (info == null && SystemLinqExpressionsHelper.IsIDynamicMetaObjectProvider(item))
                     {
                         if (MatchIndexerParameters(null, aryInfo, args, false))
                         {
-                            info = SystemCoreHelper.GetIndexerAccessor(args.Length);
+                            info = SystemLinqExpressionsHelper.GetIndexerAccessor(args.Length);
                             sourceType = typeof(Object);
                         }
                     }

@@ -147,7 +147,7 @@
     <Compile Include="MS\Internal\PlatformCulture.cs" />
     <Compile Include="MS\Internal\Security\AttachmentService.cs" />
     <Compile Include="MS\Internal\ShutDownListener.cs" />
-    <Compile Include="MS\Internal\SystemCoreExtensionMethods.cs" />
+    <Compile Include="MS\Internal\SystemLinqExpressionsExtensionMethods.cs" />
     <Compile Include="MS\Internal\SystemDataExtensionMethods.cs" />
     <Compile Include="MS\Internal\SystemDrawingExtensionMethods.cs" />
     <Compile Include="MS\Internal\SystemXmlExtensionMethods.cs" />

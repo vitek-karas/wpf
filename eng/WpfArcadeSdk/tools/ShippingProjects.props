@@ -13,7 +13,7 @@
       UIAutomationTypes;
       WindowsBase;
       System.Windows.Input.Manipulations;
-      PresentationFramework-SystemCore;
+      PresentationFramework-SystemLinqExpressions;
       PresentationFramework-SystemData;
       PresentationFramework-SystemDrawing;
       PresentationFramework-SystemXml;

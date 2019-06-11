@@ -42,7 +42,7 @@ namespace MS.Internal
         System_Xml_Linq,
         System_Private_Xml_Linq,
         System_Data,
-        System_Core,
+        System_Linq_Expressions,
     }
 
     [FriendAccessAllowed]
@@ -175,18 +175,18 @@ namespace MS.Internal
 
         #region System.Core
 
-        static SystemCoreExtensionMethods _systemCoreExtensionMethods;
+        static SystemLinqExpressionsExtensionMethods _systemLinqExpressionsExtensionMethods;
 
         // load the extension class for System.Core
-        internal static SystemCoreExtensionMethods ExtensionsForSystemCore(bool force=false)
+        internal static SystemLinqExpressionsExtensionMethods ExtensionsForSystemLinqExpressions(bool force=false)
         {
-            if (_systemCoreExtensionMethods == null &&
-                (force || IsLoaded(UncommonAssembly.System_Core)))
+            if (_systemLinqExpressionsExtensionMethods == null &&
+                (force || IsLoaded(UncommonAssembly.System_Linq_Expressions)))
             {
-                _systemCoreExtensionMethods = (SystemCoreExtensionMethods)LoadExtensionFor("SystemCore");
+                _systemLinqExpressionsExtensionMethods = (SystemLinqExpressionsExtensionMethods)LoadExtensionFor("SystemLinqExpressions");
             }
 
-            return _systemCoreExtensionMethods;
+            return _systemLinqExpressionsExtensionMethods;
         }
 
         #endregion System.Core
@@ -222,7 +222,7 @@ namespace MS.Internal
             object result = null;
 
             // create the instance of the extension class
-            Type extensionType = Type.GetType($"{extensionTypeName}, {extensionAssemblyName}", throwOnError:false);
+            Type extensionType = Type.GetType($"{extensionTypeName}, {extensionAssemblyName}", throwOnError:true);
             if (extensionType != null)
             {
                 result = Activator.CreateInstance(extensionType);

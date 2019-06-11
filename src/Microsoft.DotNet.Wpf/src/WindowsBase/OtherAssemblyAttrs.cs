@@ -31,9 +31,9 @@ using System.Windows.Markup;
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkClassic)]
 [assembly:InternalsVisibleTo(BuildInfo.ReachFramework)]
 [assembly:InternalsVisibleTo(BuildInfo.SystemWindowsPresentation)]
-[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemCore)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemData)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemDrawing)]
+[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemLinqExpressions)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemXml)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemXmlLinq)]
 

@@ -387,7 +387,7 @@
     <Compile Include="MS\Internal\PtsHost\UpdateRecord.cs" />
     <Compile Include="MS\Internal\PtsTable\CalculatedColumn.cs" />
     <Compile Include="MS\Internal\PtsTable\RowSpanVector.cs" />
-    <Compile Include="MS\Internal\SystemCoreHelper.cs" />
+    <Compile Include="MS\Internal\SystemLinqExpressionsHelper.cs" />
     <Compile Include="MS\Internal\SystemDataHelper.cs" />
     <Compile Include="MS\Internal\SystemXmlHelper.cs" />
     <Compile Include="MS\Internal\SystemXmlLinqHelper.cs" />

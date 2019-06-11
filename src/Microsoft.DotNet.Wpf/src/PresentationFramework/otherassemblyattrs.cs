@@ -30,7 +30,7 @@ using System.Windows.Markup;
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkAeroLite)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkClassic)]
 [assembly:InternalsVisibleTo(BuildInfo.SystemWindowsPresentation)]
-[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemCore)]
+[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemLinqExpressions)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemXml)]
 [assembly:InternalsVisibleTo(BuildInfo.SystemWindowsControlsRibbon)]
 

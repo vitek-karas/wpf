@@ -52,6 +52,7 @@ namespace System.Windows.Documents
         internal const string KeyMoveToLineStart =     "Home";
         internal const string KeyMoveToWindowBottom =     "Alt+Ctrl+PageDown";
         internal const string KeyMoveToWindowTop =     "Alt+Ctrl+PageUp";
+        internal const string KeySelectAll =     "Ctrl+A";
         internal const string KeySelectDownByPage =     "Shift+PageDown";
         internal const string KeySelectDownByParagraph =     "Ctrl+Shift+Down";
         internal const string KeySelectLeftByCharacter =     "Shift+Left";
@@ -97,7 +98,7 @@ namespace System.Windows.Documents
             
             // Standard Commands: Select All
             // -----------------------------
-            CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.SelectAll, new ExecutedRoutedEventHandler(OnSelectAll), queryStatusKeyboardSelectionHandler, SRID.KeySelectAll, SRID.KeySelectAllDisplayString);
+            CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.SelectAll, new ExecutedRoutedEventHandler(OnSelectAll), queryStatusKeyboardSelectionHandler, KeySelectAll, SRID.KeySelectAllDisplayString);
 
             // Editing Commands : Caret Navigation
             // -----------------------------------

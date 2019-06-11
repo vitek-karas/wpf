@@ -34,12 +34,14 @@ namespace System.Windows.Documents
     internal static class TextEditorCharacters
     {
       
+        internal const string KeyDecreaseFontSize = "Ctrl+OemOpenBrackets";
+        internal const string KeyIncreaseFontSize = "Ctrl+OemCloseBrackets";
+        internal const string KeyResetFormat = "Ctrl+Space";
+        internal const string KeyToggleBold = "Ctrl+B";
+        internal const string KeyToggleItalic = "Ctrl+I";
         internal const string KeyToggleSubscript = "Ctrl+OemPlus";
         internal const string KeyToggleSuperscript = "Ctrl+Shift+OemPlus";
         internal const string KeyToggleUnderline = "Ctrl+U";
-        internal const string KeyIncreaseFontSize = "Ctrl+OemCloseBrackets";
-        internal const string KeyDecreaseFontSize = "Ctrl+OemOpenBrackets";
-        internal const string KeyResetFormat = "Ctrl+Space";
 
         //------------------------------------------------------
         //
@@ -57,8 +59,8 @@ namespace System.Windows.Documents
             // Editing Commands: Character Editing
             // -----------------------------------
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ResetFormat                  , new ExecutedRoutedEventHandler(OnResetFormat)       , onQueryStatusNYI, KeyResetFormat, SRID.KeyResetFormatDisplayString);
-            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleBold                   , new ExecutedRoutedEventHandler(OnToggleBold)        , onQueryStatusNYI, SRID.KeyToggleBold, SRID.KeyToggleBoldDisplayString);
-            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleItalic                 , new ExecutedRoutedEventHandler(OnToggleItalic)      , onQueryStatusNYI, SRID.KeyToggleItalic, SRID.KeyToggleItalicDisplayString);
+            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleBold                   , new ExecutedRoutedEventHandler(OnToggleBold)        , onQueryStatusNYI, KeyToggleBold, SRID.KeyToggleBoldDisplayString);
+            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleItalic                 , new ExecutedRoutedEventHandler(OnToggleItalic)      , onQueryStatusNYI, KeyToggleItalic, SRID.KeyToggleItalicDisplayString);
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleUnderline              , new ExecutedRoutedEventHandler(OnToggleUnderline)   , onQueryStatusNYI, KeyToggleUnderline, SRID.KeyToggleUnderlineDisplayString);
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleSubscript              , new ExecutedRoutedEventHandler(OnToggleSubscript)   , onQueryStatusNYI, KeyToggleSubscript, SRID.KeyToggleSubscriptDisplayString);
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ToggleSuperscript            , new ExecutedRoutedEventHandler(OnToggleSuperscript) , onQueryStatusNYI, KeyToggleSuperscript, SRID.KeyToggleSuperscriptDisplayString);

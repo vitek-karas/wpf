@@ -33,16 +33,6 @@ namespace System.Windows.Documents
     /// </summary>
     internal static class TextEditorCharacters
     {
-      
-        internal const string KeyDecreaseFontSize = "Ctrl+OemOpenBrackets";
-        internal const string KeyIncreaseFontSize = "Ctrl+OemCloseBrackets";
-        internal const string KeyResetFormat = "Ctrl+Space";
-        internal const string KeyToggleBold = "Ctrl+B";
-        internal const string KeyToggleItalic = "Ctrl+I";
-        internal const string KeyToggleSubscript = "Ctrl+OemPlus";
-        internal const string KeyToggleSuperscript = "Ctrl+Shift+OemPlus";
-        internal const string KeyToggleUnderline = "Ctrl+U";
-
         //------------------------------------------------------
         //
         //  Class Internal Methods
@@ -496,5 +486,14 @@ namespace System.Windows.Documents
         #endregion Misceleneous Commands
 
         #endregion Private Methods
+      
+        private const string KeyDecreaseFontSize = "Ctrl+OemOpenBrackets";
+        private const string KeyIncreaseFontSize = "Ctrl+OemCloseBrackets";
+        private const string KeyResetFormat = "Ctrl+Space";
+        private const string KeyToggleBold = "Ctrl+B";
+        private const string KeyToggleItalic = "Ctrl+I";
+        private const string KeyToggleSubscript = "Ctrl+OemPlus";
+        private const string KeyToggleSuperscript = "Ctrl+Shift+OemPlus";
+        private const string KeyToggleUnderline = "Ctrl+U";
     }
 }

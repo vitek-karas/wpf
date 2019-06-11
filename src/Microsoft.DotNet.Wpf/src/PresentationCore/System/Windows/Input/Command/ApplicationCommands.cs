@@ -532,23 +532,23 @@ namespace System.Windows.Input
         private static RoutedUICommand[] _internalCommands = new RoutedUICommand[(int)CommandId.Last];
 #endregion Private Fields
 
-        internal const string ContextMenuKey = "Shift+F10;Apps";
-        internal const string CopyKey = "Ctrl+C;Ctrl+Insert";
-        internal const string CutKey = "Ctrl+X;Shift+Delete";
-        internal const string DeleteKey = "Del";
-        internal const string FindKey = "Ctrl+F";
-        internal const string HelpKey = "F1";
-        internal const string NewKey = "Ctrl+N";
-        internal const string OpenKey = "Ctrl+O";
-        internal const string PasteKey = "Ctrl+V;Shift+Insert";
-        internal const string PrintKey = "Ctrl+P";
-        internal const string PrintPreviewKey = "Ctrl+F2";
-        internal const string PropertiesKey = "F4";
-        internal const string RedoKey = "Ctrl+Y";
-        internal const string ReplaceKey = "Ctrl+H";
-        internal const string SaveKey = "Ctrl+S";
-        internal const string SelectAllKey = "Ctrl+A";
-        internal const string StopKey = "Esc";
-        internal const string UndoKey = "Ctrl+Z";
+        private const string ContextMenuKey = "Shift+F10;Apps";
+        private const string CopyKey = "Ctrl+C;Ctrl+Insert";
+        private const string CutKey = "Ctrl+X;Shift+Delete";
+        private const string DeleteKey = "Del";
+        private const string FindKey = "Ctrl+F";
+        private const string HelpKey = "F1";
+        private const string NewKey = "Ctrl+N";
+        private const string OpenKey = "Ctrl+O";
+        private const string PasteKey = "Ctrl+V;Shift+Insert";
+        private const string PrintKey = "Ctrl+P";
+        private const string PrintPreviewKey = "Ctrl+F2";
+        private const string PropertiesKey = "F4";
+        private const string RedoKey = "Ctrl+Y";
+        private const string ReplaceKey = "Ctrl+H";
+        private const string SaveKey = "Ctrl+S";
+        private const string SelectAllKey = "Ctrl+A";
+        private const string StopKey = "Esc";
+        private const string UndoKey = "Ctrl+Z";
     }
 }

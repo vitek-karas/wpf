@@ -33,14 +33,6 @@ namespace System.Windows.Documents
     /// </summary>
     internal static class TextEditorParagraphs
     {
-        internal const string KeyAlignCenter = "Ctrl+E";
-        internal const string KeyAlignJustify = "Ctrl+J";
-        internal const string KeyAlignLeft = "Ctrl+L";
-        internal const string KeyAlignRight = "Ctrl+R";
-        internal const string KeyApplyDoubleSpace = "Ctrl+2";
-        internal const string KeyApplyOneAndAHalfSpace = "Ctrl+5";
-        internal const string KeyApplySingleSpace =     "Ctrl+1";
-        
         //------------------------------------------------------
         //
         //  Class Internal Methods
@@ -203,5 +195,13 @@ namespace System.Windows.Documents
         #endregion Misceleneous Commands
 
         #endregion Private methods
+
+        private const string KeyAlignCenter = "Ctrl+E";
+        private const string KeyAlignJustify = "Ctrl+J";
+        private const string KeyAlignLeft = "Ctrl+L";
+        private const string KeyAlignRight = "Ctrl+R";
+        private const string KeyApplyDoubleSpace = "Ctrl+2";
+        private const string KeyApplyOneAndAHalfSpace = "Ctrl+5";
+        private const string KeyApplySingleSpace = "Ctrl+1";
     }
 }

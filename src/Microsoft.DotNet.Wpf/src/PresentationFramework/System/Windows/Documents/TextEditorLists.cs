@@ -33,12 +33,6 @@ namespace System.Windows.Documents
     /// </summary>
     internal static class TextEditorLists
     {
-        internal const string KeyDecreaseIndentation = "Ctrl+Shift+T";
-        internal const string KeyToggleBullets = "Ctrl+Shift+L";
-        internal const string KeyToggleNumbering = "Ctrl+Shift+N"; 
-        internal const string KeyRemoveListMarkers = "Ctrl+Shift+R";
-        internal const string KeyIncreaseIndentation = "Ctrl+T";
-
         //------------------------------------------------------
         //
         //  Class Internal Methods
@@ -383,5 +377,11 @@ namespace System.Windows.Documents
         }
 
         #endregion Private methods
+
+        private const string KeyDecreaseIndentation = "Ctrl+Shift+T";
+        private const string KeyToggleBullets = "Ctrl+Shift+L";
+        private const string KeyToggleNumbering = "Ctrl+Shift+N"; 
+        private const string KeyRemoveListMarkers = "Ctrl+Shift+R";
+        private const string KeyIncreaseIndentation = "Ctrl+T";
     }
 }

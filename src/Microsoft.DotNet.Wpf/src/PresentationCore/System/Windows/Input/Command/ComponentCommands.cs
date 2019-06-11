@@ -573,29 +573,29 @@ namespace System.Windows.Input
         private static RoutedUICommand[] _internalCommands = new RoutedUICommand[(int)CommandId.Last];
         #endregion Private Fields
 
-        internal const string ExtendSelectionDownKey = "Shift+Down";
-        internal const string ExtendSelectionLeftKey = "Shift+Left";
-        internal const string ExtendSelectionRightKey = "Shift+Right";
-        internal const string ExtendSelectionUpKey = "Shift+Up";
-        internal const string MoveDownKey = "Down";
-        internal const string MoveFocusBackKey = "Ctrl+Left";
-        internal const string MoveFocusDownKey = "Ctrl+Down";
-        internal const string MoveFocusForwardKey = "Ctrl+Right";
-        internal const string MoveFocusPageDownKey = "Ctrl+PageDown";
-        internal const string MoveFocusPageUpKey = "Ctrl+PageUp";
-        internal const string MoveFocusUpKey = "Ctrl+Up";
-        internal const string MoveLeftKey = "Left";
-        internal const string MoveRightKey = "Right";
-        internal const string MoveToEndKey = "End";
-        internal const string MoveToHomeKey = "Home";
-        internal const string MoveToPageDownKey = "PageDown";
-        internal const string MoveToPageUpKey = "PageUp";
-        internal const string MoveUpKey = "Up";
-        internal const string ScrollPageDownKey = "PageDown";
-        internal const string ScrollPageUpKey = "PageUp";
-        internal const string SelectToEndKey = "Shift+End";
-        internal const string SelectToHomeKey = "Shift+Home";
-        internal const string SelectToPageDownKey = "Shift+PageDown";
-        internal const string SelectToPageUpKey = "Shift+PageUp";
+        private const string ExtendSelectionDownKey = "Shift+Down";
+        private const string ExtendSelectionLeftKey = "Shift+Left";
+        private const string ExtendSelectionRightKey = "Shift+Right";
+        private const string ExtendSelectionUpKey = "Shift+Up";
+        private const string MoveDownKey = "Down";
+        private const string MoveFocusBackKey = "Ctrl+Left";
+        private const string MoveFocusDownKey = "Ctrl+Down";
+        private const string MoveFocusForwardKey = "Ctrl+Right";
+        private const string MoveFocusPageDownKey = "Ctrl+PageDown";
+        private const string MoveFocusPageUpKey = "Ctrl+PageUp";
+        private const string MoveFocusUpKey = "Ctrl+Up";
+        private const string MoveLeftKey = "Left";
+        private const string MoveRightKey = "Right";
+        private const string MoveToEndKey = "End";
+        private const string MoveToHomeKey = "Home";
+        private const string MoveToPageDownKey = "PageDown";
+        private const string MoveToPageUpKey = "PageUp";
+        private const string MoveUpKey = "Up";
+        private const string ScrollPageDownKey = "PageDown";
+        private const string ScrollPageUpKey = "PageUp";
+        private const string SelectToEndKey = "Shift+End";
+        private const string SelectToHomeKey = "Shift+Home";
+        private const string SelectToPageDownKey = "Shift+PageDown";
+        private const string SelectToPageUpKey = "Shift+PageUp";
     }
 }

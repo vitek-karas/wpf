@@ -37,14 +37,6 @@ namespace System.Windows.Documents
     /// </summary>
     internal static class TextEditorCopyPaste
     {
-        internal const string KeyCopy = "Ctrl+C";
-        internal const string KeyCopyFormat = "Ctrl+Shift+C";
-        internal const string KeyCtrlInsert = "Ctrl+Insert";
-        internal const string KeyCut = "Ctrl+X";
-        internal const string KeyPasteFormat = "Ctrl+Shift+V";
-        internal const string KeyShiftDelete = "Shift+Delete";
-        internal const string KeyShiftInsert = "Shift+Insert";
-
         //------------------------------------------------------
         //
         //  Class Internal Methods
@@ -1207,5 +1199,13 @@ namespace System.Windows.Documents
         }
 
         #endregion Private methods
+
+        private const string KeyCopy = "Ctrl+C";
+        private const string KeyCopyFormat = "Ctrl+Shift+C";
+        private const string KeyCtrlInsert = "Ctrl+Insert";
+        private const string KeyCut = "Ctrl+X";
+        private const string KeyPasteFormat = "Ctrl+Shift+V";
+        private const string KeyShiftDelete = "Shift+Delete";
+        private const string KeyShiftInsert = "Shift+Insert";
     }
 }

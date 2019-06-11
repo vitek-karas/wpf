@@ -238,25 +238,25 @@ namespace System.Windows.Input
             {
                 case  CommandId.BrowseBack:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.BrowseBackKey),
+                        BrowseBackKey,
                         SR.Get(SRID.BrowseBackKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.BrowseForward:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.BrowseForwardKey),
+                        BrowseForwardKey,
                         SR.Get(SRID.BrowseForwardKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.BrowseHome:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.BrowseHomeKey),
+                        BrowseHomeKey,
                         SR.Get(SRID.BrowseHomeKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.BrowseStop:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.BrowseStopKey),
+                        BrowseStopKey,
                         SR.Get(SRID.BrowseStopKeyDisplayString),
                         gestures);
                     break;
@@ -390,5 +390,10 @@ namespace System.Windows.Input
 
         private static RoutedUICommand[] _internalCommands = new RoutedUICommand[(int)CommandId.Last];
         #endregion Private Fields
+
+        internal const string BrowseBackKey = "Alt+Left;Backspace";
+        internal const string BrowseForwardKey = "Alt+Right;Shift+Backspace";
+        internal const string BrowseHomeKey = "Alt+Home;BrowserHome";
+        internal const string BrowseStopKey = "Alt+Esc;BrowserStop";
     }
 }

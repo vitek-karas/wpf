@@ -345,13 +345,13 @@ namespace System.Windows.Input
             {
                 case  CommandId.ScrollPageUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ScrollPageUpKey),
+                        ScrollPageUpKey,
                         SR.Get(SRID.ScrollPageUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.ScrollPageDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ScrollPageDownKey),
+                        ScrollPageDownKey,
                         SR.Get(SRID.ScrollPageDownKeyDisplayString),
                         gestures);
                     break;
@@ -375,133 +375,133 @@ namespace System.Windows.Input
                     break;
                 case  CommandId.MoveLeft:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveLeftKey),
+                        MoveLeftKey,
                         SR.Get(SRID.MoveLeftKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveRight:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveRightKey),
+                        MoveRightKey,
                         SR.Get(SRID.MoveRightKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveUpKey),
+                        MoveUpKey,
                         SR.Get(SRID.MoveUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveDownKey),
+                        MoveDownKey,
                         SR.Get(SRID.MoveDownKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.ExtendSelectionUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ExtendSelectionUpKey),
+                        ExtendSelectionUpKey,
                         SR.Get(SRID.ExtendSelectionUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.ExtendSelectionDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ExtendSelectionDownKey),
+                        ExtendSelectionDownKey,
                         SR.Get(SRID.ExtendSelectionDownKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.ExtendSelectionLeft:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ExtendSelectionLeftKey),
+                        ExtendSelectionLeftKey,
                         SR.Get(SRID.ExtendSelectionLeftKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.ExtendSelectionRight:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.ExtendSelectionRightKey),
+                        ExtendSelectionRightKey,
                         SR.Get(SRID.ExtendSelectionRightKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveToHome:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveToHomeKey),
+                        MoveToHomeKey,
                         SR.Get(SRID.MoveToHomeKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveToEnd:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveToEndKey),
+                        MoveToEndKey,
                         SR.Get(SRID.MoveToEndKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveToPageUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveToPageUpKey),
+                        MoveToPageUpKey,
                         SR.Get(SRID.MoveToPageUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveToPageDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveToPageDownKey),
+                        MoveToPageDownKey,
                         SR.Get(SRID.MoveToPageDownKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.SelectToHome:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.SelectToHomeKey),
+                        SelectToHomeKey,
                         SR.Get(SRID.SelectToHomeKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.SelectToEnd:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.SelectToEndKey),
+                        SelectToEndKey,
                         SR.Get(SRID.SelectToEndKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.SelectToPageDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.SelectToPageDownKey),
+                        SelectToPageDownKey,
                         SR.Get(SRID.SelectToPageDownKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.SelectToPageUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.SelectToPageUpKey),
+                        SelectToPageUpKey,
                         SR.Get(SRID.SelectToPageUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusUpKey),
+                        MoveFocusUpKey,
                         SR.Get(SRID.MoveFocusUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusDownKey),
+                        MoveFocusDownKey,
                         SR.Get(SRID.MoveFocusDownKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusBack:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusBackKey),
+                        MoveFocusBackKey,
                         SR.Get(SRID.MoveFocusBackKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusForward:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusForwardKey),
+                        MoveFocusForwardKey,
                         SR.Get(SRID.MoveFocusForwardKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusPageUp:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusPageUpKey),
+                        MoveFocusPageUpKey,
                         SR.Get(SRID.MoveFocusPageUpKeyDisplayString),
                         gestures);
                     break;
                 case  CommandId.MoveFocusPageDown:
                     KeyGesture.AddGesturesFromResourceStrings(
-                        SR.Get(SRID.MoveFocusPageDownKey),
+                        MoveFocusPageDownKey,
                         SR.Get(SRID.MoveFocusPageDownKeyDisplayString),
                         gestures);
                     break;
@@ -572,5 +572,30 @@ namespace System.Windows.Input
 
         private static RoutedUICommand[] _internalCommands = new RoutedUICommand[(int)CommandId.Last];
         #endregion Private Fields
+
+        internal const string ExtendSelectionDownKey = "Shift+Down";
+        internal const string ExtendSelectionLeftKey = "Shift+Left";
+        internal const string ExtendSelectionRightKey = "Shift+Right";
+        internal const string ExtendSelectionUpKey = "Shift+Up";
+        internal const string MoveDownKey = "Down";
+        internal const string MoveFocusBackKey = "Ctrl+Left";
+        internal const string MoveFocusDownKey = "Ctrl+Down";
+        internal const string MoveFocusForwardKey = "Ctrl+Right";
+        internal const string MoveFocusPageDownKey = "Ctrl+PageDown";
+        internal const string MoveFocusPageUpKey = "Ctrl+PageUp";
+        internal const string MoveFocusUpKey = "Ctrl+Up";
+        internal const string MoveLeftKey = "Left";
+        internal const string MoveRightKey = "Right";
+        internal const string MoveToEndKey = "End";
+        internal const string MoveToHomeKey = "Home";
+        internal const string MoveToPageDownKey = "PageDown";
+        internal const string MoveToPageUpKey = "PageUp";
+        internal const string MoveUpKey = "Up";
+        internal const string ScrollPageDownKey = "PageDown";
+        internal const string ScrollPageUpKey = "PageUp";
+        internal const string SelectToEndKey = "Shift+End";
+        internal const string SelectToHomeKey = "Shift+Home";
+        internal const string SelectToPageDownKey = "Shift+PageDown";
+        internal const string SelectToPageUpKey = "Shift+PageUp";
     }
 }

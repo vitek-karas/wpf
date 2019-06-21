@@ -2137,7 +2137,6 @@ namespace System.Windows
             }
             else
             {
-                SecurityHelper.DemandUnmanagedCode();
                 refInt = IntPtr.Zero;
 
                 // we have handled the event DefWndProc will not be called for this msg

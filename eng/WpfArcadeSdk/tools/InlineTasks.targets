@@ -81,4 +81,50 @@
       </Code>
     </Task>
   </UsingTask>
+
+  <UsingTask TaskName="InstallWPFPreCommitGitHook"
+               TaskFactory="$(TaskFactoryToUse)"
+               AssemblyFile="$(TaskFactoryAssemblyToUse)">
+    <ParameterGroup>
+      <RepoRoot ParameterType="System.String" Required="true" />
+      <EngineeringDir ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            string WPFPreCommitGitHookSource = Path.Combine(EngineeringDir, @"wpfarcadesdk\tools\pre-commit.githook");
+            string WPFPreCommitGitHookDest = Path.Combine(RepoRoot, @".git\hooks\pre-commit");
+
+            bool result = true;
+
+            try
+            {
+                Log.LogMessage("InstallWPFPreCommitGitHook: Detecting pre-comit git hook...");
+
+                // Verify the payload file exists
+                if (!File.Exists(WPFPreCommitGitHookSource))
+                {
+                    return false;
+                }
+
+                // Install pre-commit hook if it has not been installed
+                if (!File.Exists(WPFPreCommitGitHookDest))
+                {
+                    Log.LogMessage("InstallWPFPreCommitGitHook: Installing pre-comit git hook...");
+                    File.Copy(WPFPreCommitGitHookSource, WPFPreCommitGitHookDest);
+                }
+            }
+            catch
+            {
+                Log.LogErrorFromException(e);
+
+                result = false;
+            }
+
+            return result;
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
 </Project>

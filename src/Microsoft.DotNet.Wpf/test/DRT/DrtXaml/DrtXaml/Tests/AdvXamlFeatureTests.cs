@@ -1016,42 +1016,6 @@ namespace DrtXaml.Tests
             Test.Elements.HoldsOneElement root = (Test.Elements.HoldsOneElement)o;
         }
 
-        [TestDisabled]  // Needs setup in the TestMethod below. (fails as independent text)
-        [TestXaml]
-        const string LocalAssembly6_XAML = @"
-        <Object10
-            xmlns='clr-namespace:Test.Elements'>
-           <Object10.Object0>
-              <InternalObjectWithInternalDefaultCtor X='3'  Y='5'/>
-           </Object10.Object0>
-        </Object10>";
-
-        [TestMethod]  // continue to run this as a test method.
-        public void LocalAssembly6()
-        {
-            Assembly localAssembly = FindLoadedAssembly("XamlTestClasses");
-            XamlXmlReaderSettings settings = new XamlXmlReaderSettings();
-            settings.LocalAssembly = localAssembly;
-
-            TextReader textReader = new StringReader(LocalAssembly6_XAML);
-            XmlReader xmlReader = XmlReader.Create(textReader);
-            XamlXmlReader reader = new XamlXmlReader(xmlReader, settings);
-
-            XamlNodeList xamlNodeList = new XamlNodeList(reader.SchemaContext);
-            XamlWriter xamlWriter = xamlNodeList.Writer;
-            XamlServices.Transform(reader, xamlWriter);
-
-            XamlReader xamlReader = xamlNodeList.GetReader();
-
-            // Set local assembly on the XOW also (to access internal Ctors)
-            XamlObjectWriterSettings xowSettings = new XamlObjectWriterSettings();
-
-            XamlObjectWriter objWriter = new XamlObjectWriter(xamlReader.SchemaContext, xowSettings);
-            XamlServices.Transform(xamlReader, objWriter);
-            object o = objWriter.Result;
-            Test.Elements.Object10 root = (Test.Elements.Object10)o;
-        }
-
         const string LocalAssembly_FriendWithKey_XAML = @"
         <Object10i
             xmlns='clr-namespace:Test.Elements;assembly=XamlTestClasses'>

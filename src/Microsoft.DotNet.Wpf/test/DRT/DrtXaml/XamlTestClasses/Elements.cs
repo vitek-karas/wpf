@@ -221,16 +221,6 @@ namespace Test.Elements
     {
     }
 
-    internal class InternalObjectWithInternalDefaultCtor
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        internal InternalObjectWithInternalDefaultCtor()
-        {
-        }
-    }
-
     // Used to provide test classes with access to non-public members
     public interface IHaveNoPrivacy
     {

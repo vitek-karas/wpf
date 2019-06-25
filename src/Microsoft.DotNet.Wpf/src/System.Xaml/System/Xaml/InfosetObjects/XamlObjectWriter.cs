@@ -135,17 +135,9 @@ namespace System.Xaml
             if (settings != null)
             {
                 runtimeSettings = new XamlRuntimeSettings { IgnoreCanConvert = settings.IgnoreCanConvert };
-#if !TARGETTING35SP1
-                if (settings.AccessLevel != null)
-                {
-                    result = new PartialTrustTolerantRuntime(runtimeSettings, settings.AccessLevel, schemaContext);
-                }
             }
-            if (result == null)
-            {
-#endif
-                result = new ClrObjectRuntime(runtimeSettings, true /*isWriter*/);
-            }
+
+            result = new ClrObjectRuntime(runtimeSettings, true /*isWriter*/);
             result.LineInfo = this;
             return result;
         }

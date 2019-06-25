@@ -953,8 +953,6 @@ namespace System.Windows
                     System.Xaml.XamlObjectWriterSettings owSettings = XamlReader.CreateObjectWriterSettingsForBaml();
                     if (assembly != null)
                     {
-                        owSettings.AccessLevel = XamlAccessLevel.AssemblyAccessTo(assembly);
-
                         AssemblyName asemblyName = new AssemblyName(assembly.FullName);
                         Uri streamUri = null;
                         string packUri = string.Format("pack://application:,,,/{0};v{1};component/{2}", asemblyName.Name, asemblyName.Version.ToString(), resourceName);
@@ -970,24 +968,7 @@ namespace System.Windows
                     }
 
                     System.Xaml.XamlObjectWriter writer = new System.Xaml.XamlObjectWriter(bamlReader.SchemaContext, owSettings);
-
-                    if (owSettings.AccessLevel != null)
-                    {
-                        XamlLoadPermission loadPermission = new XamlLoadPermission(owSettings.AccessLevel);
-                        loadPermission.Assert();
-                        try
-                        {
-                            System.Xaml.XamlServices.Transform(bamlReader, writer);
-                        }
-                        finally
-                        {
-                            CodeAccessPermission.RevertAssert();
-                        }
-                    }
-                    else
-                    {
-                        System.Xaml.XamlServices.Transform(bamlReader, writer);
-                    }
+                    System.Xaml.XamlServices.Transform(bamlReader, writer);
 
                     dictionary = (ResourceDictionary)writer.Result;
 

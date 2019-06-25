@@ -23,15 +23,12 @@ namespace System.Xaml
             BeforePropertiesHandler = settings.BeforePropertiesHandler;
             AfterPropertiesHandler = settings.AfterPropertiesHandler;
             AfterEndInitHandler = settings.AfterEndInitHandler;
-#if !TARGETTING35SP1
             XamlSetValueHandler = settings.XamlSetValueHandler;
-#endif
             RootObjectInstance = settings.RootObjectInstance;
             IgnoreCanConvert = settings.IgnoreCanConvert;
             ExternalNameScope = settings.ExternalNameScope;
             SkipDuplicatePropertyCheck = settings.SkipDuplicatePropertyCheck;
             RegisterNamesOnExternalNamescope = settings.RegisterNamesOnExternalNamescope;
-            AccessLevel = settings.AccessLevel;
             SkipProvideValueOnRoot = settings.SkipProvideValueOnRoot;
             PreferUnconvertedDictionaryKeys = settings.PreferUnconvertedDictionaryKeys;
             SourceBamlUri = settings.SourceBamlUri;
@@ -41,9 +38,7 @@ namespace System.Xaml
         public EventHandler<XamlObjectEventArgs> BeforePropertiesHandler { get; set; }
         public EventHandler<XamlObjectEventArgs> AfterPropertiesHandler { get; set; }
         public EventHandler<XamlObjectEventArgs> AfterEndInitHandler { get; set; }
-#if !TARGETTING35SP1
         public EventHandler<XamlSetValueEventArgs> XamlSetValueHandler { get; set; }
-#endif
 
         public Object RootObjectInstance { get; set; }
         public bool IgnoreCanConvert { get; set; }
@@ -59,11 +54,6 @@ namespace System.Xaml
         /// </summary>
         public Uri SourceBamlUri { get; set; }
 
-        // Not critical: This property indicates the expected access level for non-public members
-        //               in partial trust. We don't actually make any security decisions based on
-        //               this value without demanding XamlLoadPermission.
-        public XamlAccessLevel AccessLevel { get; set; }
-
         internal XamlObjectWriterSettings StripDelegates()
         {
             XamlObjectWriterSettings result = new XamlObjectWriterSettings(this);
@@ -72,9 +62,8 @@ namespace System.Xaml
             result.AfterEndInitHandler = null;
             result.AfterPropertiesHandler = null;
             result.BeforePropertiesHandler = null;
-#if !TARGETTING35SP1
             result.XamlSetValueHandler = null;
-#endif
+
             return result;
         }
     }

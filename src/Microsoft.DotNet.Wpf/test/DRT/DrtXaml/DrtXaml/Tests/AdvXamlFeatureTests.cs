@@ -1045,7 +1045,6 @@ namespace DrtXaml.Tests
 
             // Set local assembly on the XOW also (to access internal Ctors)
             XamlObjectWriterSettings xowSettings = new XamlObjectWriterSettings();
-            xowSettings.AccessLevel = System.Xaml.Permissions.XamlAccessLevel.AssemblyAccessTo(localAssembly);
 
             XamlObjectWriter objWriter = new XamlObjectWriter(xamlReader.SchemaContext, xowSettings);
             XamlServices.Transform(xamlReader, objWriter);

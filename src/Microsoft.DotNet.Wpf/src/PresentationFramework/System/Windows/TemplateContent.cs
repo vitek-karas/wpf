@@ -197,14 +197,6 @@ namespace System.Windows
             ObjectWriterFactory = factory;
             SchemaContext = xamlReader.SchemaContext;
             ObjectWriterParentSettings = factory.GetParentSettings();
-
-            XamlAccessLevel accessLevel = ObjectWriterParentSettings.AccessLevel;
-            if (accessLevel != null)
-            {
-                XamlLoadPermission loadPermission = new XamlLoadPermission(accessLevel);
-                loadPermission.Demand();
-                LoadPermission = loadPermission;
-            }
             TemplateLoadData.Reader = xamlReader;
 
             Initialize(context);
@@ -299,12 +291,6 @@ namespace System.Windows
             return _xamlNodeList.GetReader();
         }
 
-        internal XamlLoadPermission LoadPermission
-        {
-            get;
-            set;
-        }
-
         //Called by FrameworkTemplate.Seal() to let go of the data used for Template Load.
         internal void ResetTemplateLoadData()
         {
@@ -360,22 +346,7 @@ namespace System.Windows
             List<PropertyValue> sharedProperties,
             ref int nameNumber)
         {
-            if (LoadPermission != null)
-            {
-                LoadPermission.Assert();
-                try
-                {
-                    ParseNodes(stack, sharedProperties, ref nameNumber);
-                }
-                finally
-                {
-                    CodeAccessPermission.RevertAssert();
-                }
-            }
-            else
-            {
-                ParseNodes(stack, sharedProperties, ref nameNumber);
-            }
+            ParseNodes(stack, sharedProperties, ref nameNumber);
         }
 
         private void ParseNodes(

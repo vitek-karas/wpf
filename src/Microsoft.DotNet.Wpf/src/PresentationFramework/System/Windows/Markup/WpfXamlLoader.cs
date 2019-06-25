@@ -35,11 +35,10 @@ namespace System.Windows.Markup
         }
 
         public static object LoadBaml(System.Xaml.XamlReader xamlReader, bool skipJournaledProperties,
-            Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+            Object rootObject, Uri baseUri)
         {
             XamlObjectWriterSettings settings = XamlReader.CreateObjectWriterSettingsForBaml();
             settings.RootObjectInstance = rootObject;
-            settings.AccessLevel = accessLevel;
             object result = Load(xamlReader, null, skipJournaledProperties, rootObject, settings, baseUri);
             EnsureXmlNamespaceMaps(result, xamlReader.SchemaContext);
             return result;

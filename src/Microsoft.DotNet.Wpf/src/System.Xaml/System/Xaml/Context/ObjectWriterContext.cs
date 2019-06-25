@@ -46,11 +46,7 @@ namespace MS.Internal.Xaml.Context
                 XAML3.INameScopeDictionary rootNameScopeDictionary = null;
                 if (rootNameScope == null)
                 {
-#if TARGETTING35SP1
-                    rootNameScopeDictionary = new NameScopeDictionary(new NameScope());
-#else
                     rootNameScopeDictionary = new NameScope();
-#endif
                 }
                 else
                 {
@@ -88,11 +84,7 @@ namespace MS.Internal.Xaml.Context
             XAML3.INameScopeDictionary rootNameScopeDictionary = null;
             if (rootNameScope == null)
             {
-#if TARGETTING35SP1
-                rootNameScopeDictionary = new NameScopeDictionary(new NameScope());
-#else
                 rootNameScopeDictionary = new NameScope();
-#endif
             }
             else
             {
@@ -115,16 +107,7 @@ namespace MS.Internal.Xaml.Context
 
         public override Assembly LocalAssembly
         {
-            get
-            {
-                Assembly result = base.LocalAssembly;
-                if (result == null && _settings != null && _settings.AccessLevel != null)
-                {
-                    result = Assembly.Load(_settings.AccessLevel.AssemblyAccessToAssemblyName);
-                    base.LocalAssembly = result;
-                }
-                return result;
-            }
+            get => base.LocalAssembly;
             protected set { base.LocalAssembly = value; }
         }
 

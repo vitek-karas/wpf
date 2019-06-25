@@ -30,7 +30,9 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlException' does not impl
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlInternalException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlObjectReaderException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlObjectWriterException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Xaml.XamlObjectWriterSettings.AccessLevel.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Xaml.XamlObjectWriterSettings.AccessLevel.set(System.Xaml.Permissions.XamlAccessLevel)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlParseException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlSchemaException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xaml.XamlXmlWriterException' does not implement interface 'System.Runtime.InteropServices._Exception' in the implementation but it does in the contract.
-Total Issues: 34
+Total Issues: 36

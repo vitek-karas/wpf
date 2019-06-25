@@ -638,7 +638,6 @@ namespace System.Windows.Markup
             if (parentSettings != null)
             {
                 owSettings.SkipDuplicatePropertyCheck = parentSettings.SkipDuplicatePropertyCheck;
-                owSettings.AccessLevel = parentSettings.AccessLevel;
                 owSettings.SkipProvideValueOnRoot = parentSettings.SkipProvideValueOnRoot;
                 owSettings.SourceBamlUri = parentSettings.SourceBamlUri;
             }
@@ -1002,21 +1001,11 @@ namespace System.Windows.Markup
 
                 if (internalTypeHelper != null)
                 {
-                    XamlAccessLevel accessLevel = XamlAccessLevel.AssemblyAccessTo(streamInfo.Assembly);
-                    XamlLoadPermission loadPermission = new XamlLoadPermission(accessLevel);
-                    loadPermission.Assert();
-                    try
-                    {
-                        root = WpfXamlLoader.LoadBaml(reader, parserContext.SkipJournaledProperties, parent, accessLevel, parserContext.BaseUri);
-                    }
-                    finally
-                    {
-                        CodeAccessPermission.RevertAssert();
-                    }
+                    root = WpfXamlLoader.LoadBaml(reader, parserContext.SkipJournaledProperties, parent, parserContext.BaseUri);
                 }
                 else
                 {
-                    root = WpfXamlLoader.LoadBaml(reader, parserContext.SkipJournaledProperties, parent, null, parserContext.BaseUri);
+                    root = WpfXamlLoader.LoadBaml(reader, parserContext.SkipJournaledProperties, parent, parserContext.BaseUri);
                 }
 
                 DependencyObject dObject = root as DependencyObject;

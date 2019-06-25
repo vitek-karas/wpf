@@ -1026,6 +1026,7 @@ namespace DrtXaml.Tests
            </Object10.Object0>
         </Object10>";
 
+        [TestDisabled]
         [TestMethod]  // continue to run this as a test method.
         public void LocalAssembly6()
         {

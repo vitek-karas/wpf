@@ -55,10 +55,6 @@
       <Uri>https://github.com/dotnet/corefx</Uri>
       <Sha>468355e66daf9eaeb1978703fa6365cd1e37e644</Sha>
     </Dependency>
-    <Dependency Name="System.Windows.Extensions" Version="4.6.0-preview7.19320.1" CoherentParentDependency="Microsoft.NETCore.App">
-      <Uri>https://github.com/dotnet/corefx</Uri>
-      <Sha>468355e66daf9eaeb1978703fa6365cd1e37e644</Sha>
-    </Dependency>
     <Dependency Name="Microsoft.NETCore.App" Version="3.0.0-preview7-27824-03" CoherentParentDependency="Microsoft.Private.Winforms">
       <Uri>https://github.com/dotnet/core-setup</Uri>
       <Sha>e1d780539e85f4d8de263957715f9d08db2ceef4</Sha>
@@ -106,6 +102,10 @@
     <Dependency Name="Microsoft.DotNet.GenAPI" Version="1.0.0-beta.19358.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>1b9a6174ab335ff53e2b42faa5666b5ecd06534f</Sha>
+    </Dependency>
+    <Dependency Name="System.Windows.Extensions" Version="4.6.0-preview7.19320.1" CoherentParentDependency="Microsoft.NETCore.App">
+      <Uri>https://github.com/dotnet/corefx</Uri>
+      <Sha>468355e66daf9eaeb1978703fa6365cd1e37e644</Sha>
     </Dependency>
   </ToolsetDependencies>
 </Dependencies>

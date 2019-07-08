@@ -36,7 +36,7 @@
     <SystemSecurityCryptographyXmlPackageVersion>4.6.0-preview8.19357.5</SystemSecurityCryptographyXmlPackageVersion>
     <SystemSecurityPermissionsPackageVersion>4.6.0-preview8.19357.5</SystemSecurityPermissionsPackageVersion>
     <SystemSecurityPrincipalWindowsPackageVersion>4.6.0-preview8.19357.5</SystemSecurityPrincipalWindowsPackageVersion>
-    <SystemWindowsExtensionsPackageVersion>4.6.0-preview8.19357.5</SystemWindowsExtensionsPackageVersion>
+    <SystemWindowsExtensionsPackageVersion>4.6.0-preview7.19320.1</SystemWindowsExtensionsPackageVersion>
   </PropertyGroup>
   <!-- Packages that come from https://github.com/dotnet/arcade -->
   <PropertyGroup>

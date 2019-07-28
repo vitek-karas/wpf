@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</PackageName>
-    <AssemblyName>$(PackageName)</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</AssemblyName>
     <PackageDescription>WPF Transport Package from dotnet/wpf repository</PackageDescription>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageName Include="$(AssemblyName)" />
+  </ItemGroup>
 </Project>

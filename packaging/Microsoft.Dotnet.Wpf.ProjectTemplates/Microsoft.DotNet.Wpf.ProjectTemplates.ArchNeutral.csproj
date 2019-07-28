@@ -17,10 +17,13 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</PackageName>
-    <AssemblyName>$(PackageName)</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</AssemblyName>
     <PackageDescription>Project templates for .NET Core WPF Projects</PackageDescription>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageName Include="$(AssemblyName)" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackagingContent Include="useSharedDesignerContext.txt" SubFolder="root" />

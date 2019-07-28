@@ -37,19 +37,22 @@
         External
   -->
   <PropertyGroup>
-    <!-- Built out of internal repo -->
-    <PackageName Condition="'$(RepoLocation)'=='Internal'">$(DncEngTransportPackageName)</PackageName>
-
-    <!-- Built out of https://www.github.com/dotnet/wpf -->
-    <PackageName Condition="'$(RepoLocation)'=='External'">$(GitHubTransportPackageName)</PackageName>
-
-    <!-- Built out of https://www.github.com/dotnet/wpf -->
-    <PackageName Condition="'$(RepoLocation)'=='WindowsDesktopSdk'">$(WindowsDesktopSdkPackageName)</PackageName>
-
     <RepositoryUrl Condition="'$(RepoLocation)'=='Internal'">https://dev.azure.com/dnceng/internal/_git/dotnet-wpf-int</RepositoryUrl>
   </PropertyGroup>
 
+  <!-- 
+    A project may belong to more than one NuGet package being produced as part of the build process 
+  -->
+  <ItemGroup>
+    <!-- Built out of internal repo -->
+    <PackageName Condition="'$(RepoLocation)'=='Internal'" Include="$(DncEngTransportPackageName)" />
 
+    <!-- Built out of https://www.github.com/dotnet/wpf -->
+    <PackageName Condition="'$(RepoLocation)'=='External'" Include="$(GitHubTransportPackageName)" />
+
+    <!-- Built out of https://www.github.com/dotnet/wpf -->
+    <PackageName Condition="'$(RepoLocation)'=='WindowsDesktopSdk'" Include="$(WindowsDesktopSdkPackageName)" />
+  </ItemGroup>
 
   <!-- Projects that consume our packages should not be forced to consume our dependencies as well  -->
   <!-- Set PrivateAssets=All to mark contentfiles;analyzers;build as private                        -->

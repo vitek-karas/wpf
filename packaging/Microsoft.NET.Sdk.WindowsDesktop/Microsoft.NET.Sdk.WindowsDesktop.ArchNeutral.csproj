@@ -17,10 +17,13 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</PackageName>
-    <AssemblyName>$(PackageName</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</AssemblyName>
     <PackageDescription>WindowsDesktop SDK</PackageDescription>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageName Include="$(AssemblyName)" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackagingContent Include="Sdk\*" SubFolder="root\Sdk" />

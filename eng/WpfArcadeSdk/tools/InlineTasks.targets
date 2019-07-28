@@ -1,10 +1,10 @@
 <Project>
   <PropertyGroup>
-    <TaskFactoryToUse Condition="'$(MSBuildProjectExtension)'!='.vcxproj'">RoslynCodeTaskFactory</TaskFactoryToUse>
-    <TaskFactoryToUse Condition="'$(MSBuildProjectExtension)'=='.vcxproj'">CodeTaskFactory</TaskFactoryToUse>
+    <TaskFactoryToUse Condition="'$(MSBuildProjectExtension)'!='.vcxproj' and '$(MSBuildRuntimeType)' == 'Core'">RoslynCodeTaskFactory</TaskFactoryToUse>
+    <TaskFactoryToUse Condition="'$(MSBuildProjectExtension)'=='.vcxproj' or '$(MSBuildRuntimeType)' != 'Core'">CodeTaskFactory</TaskFactoryToUse>
 
-    <TaskFactoryAssemblyToUse Condition="'$(MSBuildProjectExtension)'!='.vcxproj'">$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll</TaskFactoryAssemblyToUse>
-    <TaskFactoryAssemblyToUse Condition="'$(MSBuildProjectExtension)'=='.vcxproj'">$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll</TaskFactoryAssemblyToUse>
+    <TaskFactoryAssemblyToUse Condition="'$(MSBuildProjectExtension)'!='.vcxproj' and '$(MSBuildRuntimeType)' == 'Core'">$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll</TaskFactoryAssemblyToUse>
+    <TaskFactoryAssemblyToUse Condition="'$(MSBuildProjectExtension)'=='.vcxproj' or '$(MSBuildRuntimeType)' != 'Core'">$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll</TaskFactoryAssemblyToUse>
   </PropertyGroup>
   
   <UsingTask TaskName="FilterItem1ByItem2"
@@ -132,6 +132,42 @@
                 Log.LogErrorFromException(e);
                 throw e;
             }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="CreatePackageAssetItem"
+             TaskFactory="$(TaskFactoryToUse)"
+             AssemblyFile="$(TaskFactoryAssemblyToUse)">
+    <ParameterGroup>
+      <Include ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <ArtifactsPackagingDir ParameterType="System.String" Required="true" />
+      <DestinationSubFolder ParameterType="System.String" Required="true" />
+      <NormalizedPackageName ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      
+      <Result ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Langauge="cs">
+        <![CDATA[
+          var result = new List<TaskItem>();
+          
+          foreach (var pkgNameItem in NormalizedPackageName)
+          {
+              string relativePath = Path.Combine(ArtifactsPackagingDir, pkgNameItem.ItemSpec, DestinationSubFolder);
+              foreach (var includeItem in Include)
+              {
+                var resultItem = new TaskItem(includeItem);
+                resultItem.SetMetadata("RelativePath", relativePath);
+              
+                Log.LogMessage("ResultItem:" + resultItem);
+                result.Add(resultItem);
+              }
+          }
+          
+          Result = result.ToArray();
         ]]>
       </Code>
     </Task>

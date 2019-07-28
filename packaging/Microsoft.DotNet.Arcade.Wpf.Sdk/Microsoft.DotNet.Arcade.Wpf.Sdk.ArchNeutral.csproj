@@ -17,10 +17,13 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</PackageName>
-    <AssemblyName>$(PackageName)</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName.Replace('.ArchNeutral',''))</AssemblyName>
     <PackageDescription>WPF Build props/targets transport package shared between dotnet/wpf and dotnet-wpf-int</PackageDescription>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageName Include="$(AssemblyName)" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackagingContent Include="$(RepoRoot)eng\WpfArcadeSdk\Sdk\*" SubFolder="root\Sdk" />

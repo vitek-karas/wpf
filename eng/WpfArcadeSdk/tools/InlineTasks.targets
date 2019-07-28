@@ -143,7 +143,7 @@
     <ParameterGroup>
       <Include ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
       <ArtifactsPackagingDir ParameterType="System.String" Required="true" />
-      <DestinationSubFolder ParameterType="System.String" Required="true" />
+      <DestinationSubFolder ParameterType="System.String" Required="false" />
       <NormalizedPackageName ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
       
       <Result ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
@@ -156,14 +156,64 @@
           
           foreach (var pkgNameItem in NormalizedPackageName)
           {
-              string relativePath = Path.Combine(ArtifactsPackagingDir, pkgNameItem.ItemSpec, DestinationSubFolder);
+              string destinationSubFolder = DestinationSubFolder;
+              if (destinationSubFolder == null)
+              {
+                  destinationSubFolder = string.Empty;
+              }
+              
+              string relativePath = Path.Combine(ArtifactsPackagingDir, pkgNameItem.ItemSpec, destinationSubFolder);
               foreach (var includeItem in Include)
               {
                 var resultItem = new TaskItem(includeItem);
                 resultItem.SetMetadata("RelativePath", relativePath);
-              
-                Log.LogMessage("ResultItem:" + resultItem);
+                
                 result.Add(resultItem);
+              }
+          }
+          
+          Result = result.ToArray();
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="CreatePackagingRootFolderSubFolders"
+             TaskFactory="$(TaskFactoryToUse)"
+             AssemblyFile="$(TaskFactoryAssemblyToUse)">
+    <ParameterGroup>
+      <NormalizedPackageName ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <PackagingContent ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+
+      <Result ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          var result = new List<TaskItem>();
+          
+          HashSet<string> subFolders = new HashSet<string>();
+          foreach (var packagingContentItem in PackagingContent)
+          {
+              if (packagingContentItem.MetadataNames.Cast<string>().Contains("SubFolder"))
+              {
+                  var subFolder = packagingContentItem.GetMetadata("SubFolder") as string;
+                  if (subFolder.StartsWith(@"root\"))
+                  {
+                      subFolders.Add(subFolder.Substring(5));
+                  }
+              }
+          }
+          
+          foreach (var subFolder in subFolders)
+          {
+              foreach (var normalizedPackageNameItem in NormalizedPackageName)
+              {
+                  var resultItem = new TaskItem(subFolder);
+                  resultItem.SetMetadata("PackageName", normalizedPackageNameItem.ItemSpec);
+                          
+                  result.Add(resultItem);
               }
           }
           

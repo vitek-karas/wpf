@@ -133,53 +133,60 @@ $(PreparePackageAssetsDependsOn):
       <PackageAsset Include="$(ReferenceAssemblyDir)*.xml" RelativePath="$(ArtifactsPackagingDir)\$(DestinationSubFolder)"/>
     </ItemGroup>
     -->
-    <!--<CreateItem Include="$(OutDir)*.dll"
-                AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)"
-                Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'==''">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>-->
-    <CreatePackageAssetItem Include="$(OutDir)*.dll"
+    <ItemGroup>
+      <OutputDlls Include="$(OutDir)*.dll" />
+      <OutputExes Include="$(OutDir)*.exe" />
+      <OutputPdbs Include="$(OutDir)*.pdb" />
+      <ReferenceDlls Include="$(ReferenceAssemblyDir)*.dll" />
+      <ReferenceXmls Include="$(ReferenceAssemblyDir)*.xml" />
+    </ItemGroup>
+    <CreatePackageAssetItem Include="@(OutputDlls)"
                             Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'==''"
                             ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
                             DestinationSubFolder="$(DestinationSubFolder)"
                             NormalizedPackageName="@(NormalizedPackageName)">
       <Output ItemName="PackageAsset" TaskParameter="Result"/>
     </CreatePackageAssetItem>
-    <CreateItem Include="$(OutDir)*.exe"
-                AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)"
-                Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'==''">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>
-    <CreateItem Include="$(OutDir)*.pdb"
-                AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)"
+
+    <CreatePackageAssetItem Include="@(OutputExes)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="$(DestinationSubFolder)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
+                            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'==''">
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
+    <CreatePackageAssetItem Include="@(OutputPdbs)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="$(DestinationSubFolder)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
                 Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '$(ExcludePdbs)'!='true' and '@(PackagingAssemblyContent)'==''">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>
-    
-    <CreateItem Include="$(ReferenceAssemblyDir)*.dll"
-                AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\ref\$(TargetFramework)"
-                Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '$(ExcludeRefAssemblies)'!='true'">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
+
+    <CreatePackageAssetItem Include="@(ReferenceDlls)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="ref\$(TargetFramework)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
+                            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '$(ExcludeRefAssemblies)'!='true'">
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
     
     <!-- Intellisense XML's bundled alongwith ref-pack content -->
-    <CreateItem Include="$(ReferenceAssemblyDir)*.xml"
-            AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\ref\$(TargetFramework)"
-            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '$(ExcludeRefAssemblies)'!='true'">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>
+    <CreatePackageAssetItem Include="@(ReferenceXmls)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="ref\$(TargetFramework)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
+                            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '$(ExcludeRefAssemblies)'!='true'">
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
 
-    <ItemGroup>
-      <PackageAsset Include="$(OutDir)%(PackagingAssemblyContent.Identity)"
-                    Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'!=''">
-        <RelativePath>$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)"</RelativePath>
-      </PackageAsset>
-    </ItemGroup>
-    <!--<CreateItem Include="$(OutDir)%(PackagingAssemblyContent.Identity)"
-            AdditionalMetadata="RelativePath=$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)"
-            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'!=''">
-      <Output ItemName="PackageAsset" TaskParameter="Include"/>
-    </CreateItem>-->   
+    <CreatePackageAssetItem Include="$(OutDir)%(PackagingAssemblyContent.Identity)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="$(DestinationSubFolder)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
+                            Condition="'$(DestinationSubFolder)'!='' and '$(IsPackagingProject)'!='true' and '@(PackagingAssemblyContent)'!=''">
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
     
     <!-- 
         $(XlfLanguages) is defined by XliffTasks.
@@ -193,23 +200,40 @@ $(PreparePackageAssetsDependsOn):
     <ItemGroup Condition="'$(XlfLanguages)'!=''">
       <PackageAssetCultures Remove="$(PackageAssetCultures)" />
       <PackageAssetCultures Include="$(XlfLanguages)" />
-
-      <PackageAsset Include="$(OutDir)%(PackageAssetCultures.Identity)\*.dll"
-                    RelativePath="$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\$(DestinationSubFolder)\%(PackageAssetCultures.Identity)" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(DestinationSubFolder)'!=''">
+    <ItemGroup>
+      <CultureSpecificOutputDlls Include="$(OutDir)%(PackageAssetCultures.Identity)\*.dll" >
+        <Culture>%(PackageAssetCultures.Identity)</Culture>
+      </CultureSpecificOutputDlls>
+    </ItemGroup>
+    
+    <CreatePackageAssetItem Include="@(CultureSpecificOutputDlls)"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="$(DestinationSubFolder)\%(CultureSpecificOutputDlls.Culture)"
+                            NormalizedPackageName="@(NormalizedPackageName)"
+                            Condition="'@(CultureSpecificOutputDlls)'!=''">
+      <Output ItemName="PackageAsset" TaskParameter="Result"/>
+    </CreatePackageAssetItem>
 
-      <!-- %(PackagingContent.SubFolder) not StartsWith 'root' -->
-      <PackageAsset Condition="'%(PackagingContent.SubFolder)'!='' And !$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root&quot;))"
-              Include="%(PackagingContent.Identity)"
-              RelativePath="$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\content\%(PackagingContent.SubFolder)"/>
+    <!-- %(PackagingContent.SubFolder) not StartsWith 'root' -->
+    <CreatePackageAssetItem Include="@(PackagingContent)"
+                            Condition="'$(DestinationSubFolder)'!='' And '%(PackagingContent.SubFolder)'!='' And !$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root&quot;))"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="content\%(PackagingContent.SubFolder)"
+                            NormalizedPackageName="@(NormalizedPackageName)">
+      <Output ItemName="PackageAsset" TaskParameter="Result" />
+    </CreatePackageAssetItem>
 
-      <PackageAsset Condition="'%(PackagingContent.SubFolder)'==''"
-                    Include="%(PackagingContent.Identity)"
-                    RelativePath="$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\content"/>
+    <CreatePackageAssetItem Include="@(PackagingContent)"
+                            Condition="'$(DestinationSubFolder)'!='' And '%(PackagingContent.SubFolder)' == ''"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="content"
+                            NormalizedPackageName="@(NormalizedPackageName)">
+      <Output ItemName="PackageAsset" TaskParameter="Result" />
+    </CreatePackageAssetItem>
 
-      <!-- 
+    <!-- 
           %(PackagingContent.SubFolder) StartsWith 'root' 
             Package content under sub-folder %(PackagingContent.SubFolder).TrimLeft('root')
             
@@ -231,15 +255,19 @@ $(PreparePackageAssetsDependsOn):
                 - In GenerateNuspec target, we have special-case logic to deal with files directly under the root folder, 
                     so we only need to keep track of sub-folder names.
       -->
-      <PackageAsset Condition="$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root&quot;))"
-                    Include="%(PackagingContent.Identity)"
-                    RelativePath="$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)$([System.String]::Copy('%(PackagingContent.SubFolder)').SubString(4))"/>
+    <CreatePackageAssetItem Include="@(PackagingContent)"
+                            Condition="'$(DestinationSubFolder)' != '' And '$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root&quot;))'"
+                            ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
+                            DestinationSubFolder="$([System.String]::Copy('%(PackagingContent.SubFolder)').SubString(4))"
+                            NormalizedPackageName="@(NormalizedPackageName)">
+      <Output ItemName="PackageAsset" TaskParameter="Result" />
+    </CreatePackageAssetItem>
 
-      <PackagingRootFolderSubFolders Condition="$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root\&quot;))"
-                                     Include="$([System.String]::Copy('%(PackagingContent.SubFolder)').SubString(5))">
-        <PackageName>%(NormalizedPackageName.Identity)</PackageName>
-      </PackagingRootFolderSubFolders>
-    </ItemGroup>
+    <CreatePackagingRootFolderSubFolders PackagingContent="@(PackagingContent)"
+                                         NormalizedPackageName="@(NormalizedPackageName)"
+                                         Condition="'$(DestinationSubFolder)' != ''">
+      <Output ItemName="PackagingRootFolderSubFolders" TaskParameter="Result" />
+    </CreatePackagingRootFolderSubFolders>
   </Target>
 
   <!-- Target:  CreateContentFolder -->
@@ -434,6 +462,8 @@ $(PreparePackageAssetsDependsOn):
           Condition="'$(IsPackable)'=='true' and '$(CreateArchNeutralPackage)'=='true' and '$(PlatformIndependentPackage)'!='true'"
           BeforeTargets="CreateContentFolder"
           Outputs="$(ArtifactsPackagingDir)%(NormalizedPackageName.Identity)\runtime.json">
+    <Error Text="ArchNeutral Package requesting runtime.json generation must be part of exactly one package identity"
+           Condition="@(NormalizedPackageName->Count()) &gt; 1" />
 
     <ItemGroup>
       <RuntimeJsonLine Remove="@(RuntimeJsonLine)" />
@@ -443,12 +473,12 @@ $(PreparePackageAssetsDependsOn):
   "runtimes": {
     "win-x64": {
       "%(NormalizedPackageName.Identity)": {
-        "runtime.win-x64.%(PackageName.Identity)": "$(PackageVersion)"
+        "runtime.win-x64.%(NormalizedPackageName.Identity)": "$(PackageVersion)"
       }
     },
     "win-x86": {
       "%(NormalizedPackageName.Identity)": {
-        "runtime.win-x86.%(PackageName.Identity)": "$(PackageVersion)"
+        "runtime.win-x86.%(NormalizedPackageName.Identity)": "$(PackageVersion)"
       }
     }
   }

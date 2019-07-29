@@ -255,10 +255,29 @@ $(PreparePackageAssetsDependsOn):
                 - In GenerateNuspec target, we have special-case logic to deal with files directly under the root folder, 
                     so we only need to keep track of sub-folder names.
       -->
+    
+    <PropertyGroup>
+      <_destinationSubFolder></_destinationSubFolder>
+      <_destinationSubFolderStartsWithRoot Condition="$(_destinationSubFolder.StartsWith('root'))">true</_destinationSubFolderStartsWithRoot>
+      <_destinationSubFolder Condition="$(_destinationSubFolder.StartsWith('root'))">$(_destinationSubFolder.SubString(4))</_destinationSubFolder>
+      <_destinationSubFolder Condition="$(_destinationSubFolder.StartsWith('\')) Or $(_destinationSubFolder.StartsWith('/'))">$(_destinationSubFolder.SubString(1))</_destinationSubFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_packagingContent Include="@(PackagingContent)" 
+                         DestinationSubFolder="$([System.String]::Copy('%(PackagingContent.SubFolder)')" />
+      <_packagingContent Remove="@(_packagingContent)"
+                         Condition="!$([System.String]::Copy('%(_packagingContent.DestinationSubFolder)'.StartsWith('root'))" />
+      <_packagingContent Update="@(_packagingContent)" DestinationSubFolder="$([System.String]::Copy('%(_packagingContent.DestinationSubFolder)').Substring(4))"/>
+      <_packagingContent Update="@(_packagingContent)" 
+                         DestinationSubFolder="$([System.String]::Copy('%(_packagingContent.DestinationSubFolder)').Substring(1))"
+                         Condition="$([System.String]::Copy('%(_packagingContent.DestinationSubFolder)').StartsWith('\'))"/>
+    </ItemGroup>
+    
     <CreatePackageAssetItem Include="@(PackagingContent)"
-                            Condition="'$(DestinationSubFolder)' != '' And '$([System.String]::Copy(&quot;%(PackagingContent.SubFolder)&quot;).StartsWith(&quot;root&quot;))'"
+                            Condition="'$(_destinationSubFolderStartsWithRoot)'== 'true'"
                             ArtifactsPackagingDir="$(ArtifactsPackagingDir)"
-                            DestinationSubFolder="$([System.String]::Copy('%(PackagingContent.SubFolder)').SubString(4))"
+                            DestinationSubFolder="$(_destinationSubFolder)"
                             NormalizedPackageName="@(NormalizedPackageName)">
       <Output ItemName="PackageAsset" TaskParameter="Result" />
     </CreatePackageAssetItem>

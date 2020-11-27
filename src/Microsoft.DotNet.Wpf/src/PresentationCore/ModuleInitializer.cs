@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ internal static class ModuleInitializer
     /// operations are carried out.  To do this, we simply call LoadDwrite
     /// as the module constructor for DirectWriteForwarder would do this anyway.
     /// </summary>
+    [ModuleInitializerAttribute]
     public static void Initialize()
     {
         MS.Internal.NativeWPFDLLLoader.LoadDwrite();

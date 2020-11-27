@@ -9,12 +9,12 @@
     <GenerateResourcesSRNamespace>MS.Internal.PresentationCore</GenerateResourcesSRNamespace>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     <Platforms>AnyCPU;x64</Platforms>
-    <InjectModuleInitializer>true</InjectModuleInitializer>
   </PropertyGroup>
 
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
